@@ -15,10 +15,12 @@ const Todo = ({ todo, completedTodo, deleteTodo, EditeTodo }) => {
       </p>
       <div className="flex items-center gap-4">
         <Edit
+          size={20}
           onClick={() => EditeTodo(todo)}
           className="hover:text-blue-500 cursor-pointer"
         />
         <Trash2
+          size={20}
           onClick={() => deleteTodo(todo.id)}
           className="hover:text-red-500 cursor-pointer"
         />
