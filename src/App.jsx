@@ -1,12 +1,22 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Form from "./components/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Todo from "./components/Todo";
-
+const getLocalTodos = () => {
+  const todos = localStorage.getItem("todos");
+  if (todos) {
+    return JSON.parse(todos);
+  }
+  return [];
+};
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => getLocalTodos());
   const [title, setTitle] = useState("");
   const [update, setUpdate] = useState();
+
+  useEffect(() => {
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const EditeTodo = (todo) => {
     setTitle(todo.title);
